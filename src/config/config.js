@@ -1,5 +1,6 @@
 const config = {
-  baseApiUrl: String(import.meta.VITE_BASE_API_URL),
+  tmdbToken: String(import.meta.env.VITE_TMDB_TOKEN),
+  baseApiUrl: String(import.meta.env.VITE_BASE_URL),
 };
 
 export default config;
