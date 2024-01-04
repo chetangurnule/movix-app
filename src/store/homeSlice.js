@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   url: {},
   genres: {},
+  bgImageData: [],
 };
 
 const homeSlice = createSlice({
@@ -15,8 +16,11 @@ const homeSlice = createSlice({
     setGenres: (state, action) => {
       state.genres = action.payload;
     },
+    setBgImageData: (state, action) => {
+      state.bgImageData = action.payload;
+    },
   },
 });
 
 export default homeSlice.reducer;
-export const { setUrl, setGenres } = homeSlice.actions;
+export const { setUrl, setGenres, setBgImageData } = homeSlice.actions;

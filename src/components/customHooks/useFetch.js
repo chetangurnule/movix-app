@@ -12,7 +12,6 @@ export default function useFetch(url) {
     setError(null);
 
     fetchApi(url)
-      .then((response) => response.json())
       .then((responseData) => {
         setData(responseData);
         setIsLoading(false);

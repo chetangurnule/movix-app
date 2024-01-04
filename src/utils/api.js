@@ -12,7 +12,7 @@ const options = {
 
 const fetchApi = async (url) => {
   const response = await fetch(baseApiUrl + url, options);
-  return response;
+  return response.json();
 };
 
 export default fetchApi;

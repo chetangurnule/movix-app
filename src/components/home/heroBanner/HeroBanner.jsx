@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { InputField, Container, useFetch, Img } from "../index.js";
+import { InputField, Container, useFetch, Img } from "../../index.js";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setBgImageData } from "../../../store/homeSlice.js";
 import "./style.scss";
 
 const HeroBanner = () => {
@@ -10,13 +11,14 @@ const HeroBanner = () => {
   const navigate = useNavigate();
   const { imageUrl } = useSelector((state) => state.home.url);
   const { data, isLoading } = useFetch("/movie/upcoming");
-
+  const dispatch = useDispatch();
   useEffect(() => {
     if (data) {
       const bgUrl =
         imageUrl +
         data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
       setBackgroundImageUrl(bgUrl);
+      dispatch(setBgImageData(data?.results));
     }
   }, [data]);
 
@@ -28,6 +30,7 @@ const HeroBanner = () => {
 
   return (
     <div className="heroBanner">
+      {isLoading && <div className="backdrop-skeleton"></div>}
       {!isLoading && (
         <div className="backdrop-img">
           <Img src={backgroundImageUrl} alt="background_Image" />
