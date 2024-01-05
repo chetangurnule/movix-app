@@ -1,7 +1,8 @@
 import React from "react";
+import { ExploreComp } from "../../components";
 
 const Explore = () => {
-  return <div>Explore</div>;
+  return <ExploreComp />;
 };
 
 export default Explore;

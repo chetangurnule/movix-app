@@ -21,6 +21,7 @@ import Similar from "./details/similar/Similar.jsx";
 import Search from "./search/Search.jsx";
 import Spinner from "../components/spinner/Spinner.jsx";
 import MovieCard from "../components/movieCard/MovieCard.jsx";
+import ExploreComp from "./explore/ExploreComp.jsx";
 export {
   Footer,
   Header,
@@ -45,4 +46,5 @@ export {
   Search,
   Spinner,
   MovieCard,
+  ExploreComp,
 };

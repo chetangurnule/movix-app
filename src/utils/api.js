@@ -2,7 +2,7 @@ import config from "../config/config.js";
 
 const baseApiUrl = config.baseApiUrl;
 const tmdbToken = config.tmdbToken;
-const options = {
+const defaultOptions = {
   method: "GET",
   headers: {
     accept: "application/json",
@@ -10,8 +10,22 @@ const options = {
   },
 };
 
-const fetchApi = async (url) => {
-  const response = await fetch(baseApiUrl + url, options);
+const fetchApi = async (url, params = {}, options = {}) => {
+  // Construct the URL with parameters
+  const queryString = Object.keys(params)
+    .map(
+      (key) => encodeURIComponent(key) + "=" + encodeURIComponent(params[key])
+    )
+    .join("&");
+
+  const apiUrl = baseApiUrl + url + (queryString ? `?${queryString}` : "");
+
+  // Make the Fetch API request
+  const response = await fetch(apiUrl, {
+    ...defaultOptions,
+    ...options,
+  });
+
   return response.json();
 };
 
