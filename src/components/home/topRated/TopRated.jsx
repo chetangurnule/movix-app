@@ -9,6 +9,7 @@ const FreeSection = () => {
   const imageData = useSelector((state) => state.home.bgImageData);
   const { imageUrl } = useSelector((state) => state.home.url);
   const { data, isLoading } = useFetch(`/${endPoint}/top_rated`);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
     if (imageData) {
@@ -22,15 +23,19 @@ const FreeSection = () => {
     tab === "Movies" ? setEndPoint("movie") : setEndPoint("tv");
   };
 
+  const onImageLoad = () => {
+    setImageLoaded(true);
+  };
+
   return (
     <div className="topRated">
-      {!imageData && <div className="backdrop-skeleton"></div>}
+      {!imageLoaded && <div className="backdrop-skeleton"></div>}
       {imageData && (
         <div className="backdrop-img">
-          <Img src={bgImage} alt="background_Image" />
+          <Img src={bgImage} alt="background_Image" onLoad={onImageLoad} />
         </div>
       )}
-      <div className="opacity-layer"> </div>
+      {imageLoaded && <div className="opacity-layer"> </div>}
       <Container>
         <span className="carouselTitle">Top Rated</span>
         <SwitchTabs tabs={["Movies", "Tv"]} onTabChange={onTabChange} />

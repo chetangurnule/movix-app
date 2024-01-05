@@ -1,7 +1,9 @@
 import React from "react";
+import { Search } from "../../components";
+import { useParams } from "react-router-dom";
 
 const SearchResult = () => {
-  return <div>SearchResult</div>;
+  return <Search />;
 };
 
 export default SearchResult;

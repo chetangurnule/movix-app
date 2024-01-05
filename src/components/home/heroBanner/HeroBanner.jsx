@@ -7,6 +7,7 @@ import "./style.scss";
 
 const HeroBanner = () => {
   const [backgroundImageUrl, setBackgroundImageUrl] = useState("");
+  const [imageLoaded, setImageLoaded] = useState(false);
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
   const { imageUrl } = useSelector((state) => state.home.url);
@@ -28,15 +29,23 @@ const HeroBanner = () => {
     }
   };
 
+  const onImageLoad = () => {
+    setImageLoaded(true);
+  };
+
   return (
     <div className="heroBanner">
-      {isLoading && <div className="backdrop-skeleton"></div>}
+      {!imageLoaded && <div className="backdrop-skeleton"></div>}
       {!isLoading && (
         <div className="backdrop-img">
-          <Img src={backgroundImageUrl} alt="background_Image" />
+          <Img
+            src={backgroundImageUrl}
+            alt="background_Image"
+            onLoad={onImageLoad}
+          />
         </div>
       )}
-      <div className="opacity-layer"> </div>
+      {imageLoaded && <div className="opacity-layer"> </div>}
       <Container>
         <div className="heroBannerContent">
           <span className="title">Welcome.</span>

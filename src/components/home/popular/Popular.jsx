@@ -9,7 +9,6 @@ const Popular = () => {
   const onTabChange = (tab) => {
     tab === "Movies" ? setEndPoint("movie") : setEndPoint("tv");
   };
-  console.log(data);
   return (
     <div className="carouselSection">
       <Container>

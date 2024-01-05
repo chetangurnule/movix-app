@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 import "./style.scss";
 
-const Carousel = ({ data, isLoading, endPoint }) => {
+const Carousel = ({ data, isLoading, endPoint, title }) => {
   const { imageUrl } = useSelector((state) => state.home.url);
   const carouselRef = useRef();
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -51,6 +51,7 @@ const Carousel = ({ data, isLoading, endPoint }) => {
   return (
     <div className="carousel">
       <Container>
+        <div className="title">{title}</div>
         <BsFillArrowLeftCircleFill
           className="carouselLeftNav arrow"
           onClick={() => navigation("left")}
