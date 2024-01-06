@@ -7,6 +7,7 @@ import { CircleRating, Container, Img, Genres } from "../index";
 import { useSelector } from "react-redux";
 import PosterFallback from "../../assets/no-poster.png";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import "./style.scss";
 
@@ -15,6 +16,8 @@ const Carousel = ({ data, isLoading, endPoint, title }) => {
   const carouselRef = useRef();
   const [imageLoaded, setImageLoaded] = useState(false);
   const navigate = useNavigate();
+  const { mediaType } = useParams();
+
   const handelImageLoad = () => {
     setImageLoaded(true);
   };
@@ -71,7 +74,9 @@ const Carousel = ({ data, isLoading, endPoint, title }) => {
                   className="carouselItem"
                   key={item.id}
                   onClick={() => {
-                    navigate(`/${item.media_type || endPoint}/${item.id}`);
+                    navigate(
+                      `/${item.media_type || endPoint || mediaType}/${item.id}`
+                    );
                   }}
                 >
                   <div className="posterBlock">

@@ -13,11 +13,8 @@ const defaultOptions = {
 const fetchApi = async (url, params = {}, options = {}) => {
   // Construct the URL with parameters
   const queryString = Object.keys(params)
-    .map(
-      (key) => encodeURIComponent(key) + "=" + encodeURIComponent(params[key])
-    )
+    .map((key) => `${key}=${params[key]}`)
     .join("&");
-
   const apiUrl = baseApiUrl + url + (queryString ? `?${queryString}` : "");
 
   // Make the Fetch API request
